@@ -46,15 +46,17 @@ $(ODIR)/%.o: src/%.c
 
 $(ODIR)/lib/%.o: lib/src/%.c
 	mkdir -p $(@D)
-	$(CLANG) --target=z80-unknown-none-code16 -fintegrated-as -O3 -c $(CFLAGS) -Wno-everything $< -S -emit-llvm -o $@.ll
-	$(CLANG) --target=z80-unknown-none-code16 -fintegrated-as -O3 -c $(CFLAGS) $< -S -o $@.s
-	$(CLANG) --target=z80-unknown-none-code16 -fintegrated-as -O3 -c $(CFLAGS) -Wno-everything $< -o $@
+	$(CLANG) --target=z80-unknown-none-code16 -fintegrated-as -O3 -c $(CFLAGS) -Ilib/src/templates -Wno-everything $< -S -emit-llvm -o $@.ll
+	$(CLANG) --target=z80-unknown-none-code16 -fintegrated-as -O3 -c $(CFLAGS) -Ilib/src/templates $< -S -o $@.s
+	$(CLANG) --target=z80-unknown-none-code16 -fintegrated-as -O3 -c $(CFLAGS) -Ilib/src/templates -Wno-everything $< -o $@
 
 $(ODIR)/a.elf: linker.ld $(OBJS)
 	$(LLD) -flavor gnu --gc-sections -T $^ -o $@
+	$(LLD) -flavor gnu -T $^ -o $@.nogc
 
 $(ODIR)/a.bin: $(ODIR)/a.elf
 	llvm-objcopy -O binary $^ $@
+	llvm-objcopy -O binary $^.nogc $@.nogc
 
 deploy: build
 	tl-flash -p /dev/ttyUSB0 $(ODIR)/a.bin
