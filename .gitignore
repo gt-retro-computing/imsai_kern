@@ -3,4 +3,5 @@ sim
 obj/
 .DS_Store
 .idea/
+pc_list.txt
 

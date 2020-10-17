@@ -5,10 +5,11 @@
 #ifndef _STDLIB_H
 #define _STDLIB_H
 
-#include <klibc/extern.h>
-#include <klibc/inline.h>
-#include <stddef.h>
-#include <stdbool.h>
+#include "klibc/extern.h"
+#include "klibc/inline.h"
+#include "stddef.h"
+#include "stdbool.h"
+#include "printf.h"
 
 __extern_inline int abs(int __n)
 {

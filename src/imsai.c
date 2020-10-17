@@ -1,4 +1,5 @@
 #include "imsai.h"
+#include "stdio.h"
 
 #define UART_CH1_BASE 0x10
 

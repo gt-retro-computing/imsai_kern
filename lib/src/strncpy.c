@@ -2,7 +2,7 @@
  * strncpy.c
  */
 
-#include <string.h>
+#include "string.h"
 
 char *strncpy(char *dst, const char *src, size_t n)
 {

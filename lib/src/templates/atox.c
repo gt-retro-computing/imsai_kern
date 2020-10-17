@@ -4,9 +4,9 @@
  * atoi(), atol(), atoll()
  */
 
-#include <inttypes.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include "inttypes.h"
+#include "stdlib.h"
+#include "stdio.h"
 
 TYPE NAME(const char *nptr)
 {

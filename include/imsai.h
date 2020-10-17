@@ -14,9 +14,6 @@ uint8_t read_serial_data();
 void write_leds(uint8_t val);
 void write_serial_data(uint8_t val);
 
-void putc(char c);
-void puts(char *str);
-
 void puti(unsigned char c);
 /**
  * @brief   prints a integer (16-bit) value in hex

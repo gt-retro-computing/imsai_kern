@@ -1,8 +1,10 @@
 #include "shell.h"
 
-#include <string.h>
-#include <stdint.h>
+#include "string.h"
+#include "stdint.h"
 #include "imsai.h"
+#include "stdlib.h"
+#include "stdio.h"
 
 #define MAX_LENGTH 127
 
@@ -55,6 +57,10 @@ void run_shell(char* prefix, char *buffer) {
 
         if (strncmp("echo ", buffer, 5) == 0) {
             puts(buffer + 5);
+            putc(C_CR); putc(C_LF);
+        } else {
+            int num = atoi(buffer);
+            printf("Number in Hex: 0x%x\n", num);
             putc(C_CR); putc(C_LF);
         }
     }

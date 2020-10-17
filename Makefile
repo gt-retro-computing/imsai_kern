@@ -30,25 +30,25 @@ default: build
 build: $(ODIR)/a.bin
 
 $(ODIR)/rt0.o: rt0.s
-	mkdir -p $(ODIR)
-	mkdir -p $(ODIR)/lib
+	@mkdir -p $(ODIR)
+	@mkdir -p $(ODIR)/lib
 	$(LLVM_MC) --filetype obj -triple=z80-unknown-unknown-code16 $< -o $@
 
 $(ODIR)/%.o: asmlib/%.s
-	mkdir -p $(@D)
+	@mkdir -p $(@D)
 	$(LLVM_MC) --filetype obj -triple=z80-unknown-none-code16 $< -o $@
 
 $(ODIR)/%.o: src/%.c
 	mkdir -p $(@D)
-	$(CLANG) --target=z80-unknown-none-code16 -fintegrated-as -O3 -c $(CFLAGS) -Wno-everything $< -S -emit-llvm -o $@.ll
+	@$(CLANG) --target=z80-unknown-none-code16 -fintegrated-as -O3 -c $(CFLAGS) -Wno-everything $< -S -emit-llvm -o $@.ll
 	$(CLANG) --target=z80-unknown-none-code16 -fintegrated-as -O3 -c $(CFLAGS) $< -S -o $@.s
-	$(CLANG) --target=z80-unknown-none-code16 -fintegrated-as -O3 -c $(CFLAGS) -Wno-everything $< -o $@
+	@$(CLANG) --target=z80-unknown-none-code16 -fintegrated-as -O3 -c $(CFLAGS) -Wno-everything $< -o $@
 
 $(ODIR)/lib/%.o: lib/src/%.c
 	mkdir -p $(@D)
-	$(CLANG) --target=z80-unknown-none-code16 -fintegrated-as -O3 -c $(CFLAGS) -Ilib/src/templates -Wno-everything $< -S -emit-llvm -o $@.ll
+	@$(CLANG) --target=z80-unknown-none-code16 -fintegrated-as -O3 -c $(CFLAGS) -Ilib/src/templates -Wno-everything $< -S -emit-llvm -o $@.ll
 	$(CLANG) --target=z80-unknown-none-code16 -fintegrated-as -O3 -c $(CFLAGS) -Ilib/src/templates $< -S -o $@.s
-	$(CLANG) --target=z80-unknown-none-code16 -fintegrated-as -O3 -c $(CFLAGS) -Ilib/src/templates -Wno-everything $< -o $@
+	@$(CLANG) --target=z80-unknown-none-code16 -fintegrated-as -O3 -c $(CFLAGS) -Ilib/src/templates -Wno-everything $< -o $@
 
 $(ODIR)/a.elf: linker.ld $(OBJS)
 	$(LLD) -flavor gnu --gc-sections -T $^ -o $@
@@ -68,4 +68,4 @@ clean:
 	rm -rf obj/*
 
 
--include $(OBJ:.o=.d)
+-include $(OBJS:.o=.d)

@@ -1,6 +1,8 @@
 extern char _bss_start;
 extern char _bss_end;
 
+#include "string.h"
+
 int main();
 
 int c_start() {

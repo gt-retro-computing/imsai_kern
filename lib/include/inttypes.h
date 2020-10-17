@@ -5,9 +5,9 @@
 #ifndef _INTTYPES_H
 #define _INTTYPES_H
 
-#include <klibc/extern.h>
-#include <stdint.h>
-#include <stddef.h>
+#include "klibc/extern.h"
+#include "stdint.h"
+#include "stddef.h"
 
 static __inline__ intmax_t imaxabs(intmax_t __n)
 {

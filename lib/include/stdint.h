@@ -9,6 +9,8 @@ typedef unsigned uint16_t;
 typedef char int8_t;
 typedef int int16_t;
 
+typedef unsigned* uintptr_t;
+
 typedef int intmax_t;
 typedef unsigned uintmax_t;
 

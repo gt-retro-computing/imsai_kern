@@ -5,8 +5,9 @@
 #ifndef _STRING_H
 #define _STRING_H
 
-#include <klibc/extern.h>
-#include <stddef.h>
+#include "klibc/extern.h"
+#include "stddef.h"
+#include "stdint.h"
 
 __extern void *memccpy(void *, const void *, int, size_t);
 __extern void *memchr(const void *, int, size_t);
@@ -14,7 +15,7 @@ __extern void *memrchr(const void *, int, size_t);
 __extern int memcmp(const void *, const void *, size_t);
 __extern void *memcpy(void *, const void *, size_t);
 __extern void *memmove(void *, const void *, size_t);
-__extern void *memset(void *, int, size_t);
+__extern void *memset(void *, uint8_t, size_t);
 __extern void *memmem(const void *, size_t, const void *, size_t);
 __extern void memswap(void *, void *, size_t);
 __extern void bzero(void *, size_t);

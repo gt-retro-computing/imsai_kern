@@ -2,6 +2,7 @@
 #include "imsai.h"
 #include "floppy.h"
 #include "shell.h"
+#include "stdarg.h"
 
 static uint8_t DRIVE = 0;
 
@@ -9,9 +10,16 @@ static char buffer[129];
 
 void main() {
 
-    run_shell("IMSAI >", buffer);
+  volatile unsigned char num = 32;
+  volatile unsigned char num2 = 81;
 
-    for(;;){}
+  printf("LMAO reee: %04d\n", (unsigned char)(num * num2));
+
+  HALT();
+
+  // run_shell("IMSAI >", buffer);
+
+  for(;;){}
 }
 //     DRIVE = read_switches() & 0b11;
 //     fdc_select(DRIVE);

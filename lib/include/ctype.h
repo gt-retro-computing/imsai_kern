@@ -7,8 +7,8 @@
 #ifndef _CTYPE_H
 #define _CTYPE_H
 
-#include <klibc/extern.h>
-#include <klibc/inline.h>
+#include "klibc/extern.h"
+#include "klibc/inline.h"
 
 __extern_inline int isupper(int __c)
 {
@@ -50,10 +50,7 @@ __extern_inline int iscntrl(int __c)
 	return __c < 0x20;
 }
 
-__extern_inline int isspace(int __c)
-{
-	return __c == ' ' || __c == '\n' || __c == '\t' || __c == '\r';
-}
+__extern int isspace(int __c);
 
 __extern_inline int isxdigit(int __c)
 {
