@@ -37,7 +37,6 @@ __extern void *realloc(void *, size_t);
 
 /* Giving malloc some memory from which to allocate */
 __extern void add_malloc_block(void *, size_t);
-__extern void get_malloc_memory_status(size_t *, size_t *);
 
 /* Malloc locking
  * Until the callbacks are set, malloc doesn't do any locking.

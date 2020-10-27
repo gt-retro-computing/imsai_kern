@@ -19,7 +19,7 @@ _OBJS += $(patsubst src/%.c, %.o, $(_CSRCS))
 _OBJS += $(patsubst asmlib/%.s, %.o, $(_LIBSRCS))
 
 ODIR=obj
-CFLAGS=-Iinclude -MMD -MP -Wall -Wno-main-return-type -Iinclude -Ilib/include -ffunction-sections
+CFLAGS=-Iinclude -MMD -MP -Wall -Wno-main-return-type -Iinclude -Ilib/include -ffunction-sections -Wno-incompatible-library-redeclaration -Wno-unused-function -fverbose-asm
 
 OBJS = $(patsubst %,$(ODIR)/%,$(_OBJS))
 

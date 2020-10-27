@@ -21,10 +21,14 @@ void puti(unsigned char c);
 void printi(unsigned c);
 void prints(uint8_t c);
 
-void hexdump(uint8_t* buf, size_t len);
+void hexdump(const void *addr, const size_t len);
 
 char readc(void);
 
+extern size_t _total_mem_size;
+extern char _stack_top;
+
+#define FREE_MEM_START ((size_t)(&_stack_top))
 
 static void io_out(const uint8_t port, uint8_t val) {
     asm volatile("out (%0), a"::"J"(port), "a"(val));

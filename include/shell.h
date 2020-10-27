@@ -1,3 +1,3 @@
 #pragma once
 
-void run_shell(char* prefix, char *buffer);
+void run_shell(const char* prefix);

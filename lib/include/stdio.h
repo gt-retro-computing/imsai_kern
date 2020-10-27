@@ -10,8 +10,9 @@
 #include "stdarg.h"
 #include "stddef.h"
 #include "string.h"
+#include "printf.h"
 
-void putc(char c);
-void puts(char *str);
+int putchar(int c);
+int puts(const char *str);
 
 #endif				/* _STDIO_H */

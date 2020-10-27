@@ -91,6 +91,12 @@ mini_itoa(int value, unsigned int radix, unsigned int uppercase, unsigned int un
     return len;
 }
 
+static void _puts_no_newline(const char* str) {
+    while(*str) {
+        putchar(*(str++));
+    }
+}
+
 static void
 mini_vprintf(const char *fmt, va_list va)
 {
@@ -99,7 +105,7 @@ mini_vprintf(const char *fmt, va_list va)
 
     while ((ch=*(fmt++))) {
         if (ch!='%')
-            putc(ch);
+            putchar(ch);
         else {
             char zero_pad = 0;
             char *ptr;
@@ -125,27 +131,27 @@ mini_vprintf(const char *fmt, va_list va)
                 case 'd':
                     len = mini_itoa(va_arg(va, unsigned int), 10, 0, (ch=='u'), bf, zero_pad);
                     bf[len] = '\0';
-                    puts(bf);
+                    _puts_no_newline(bf);
                     break;
 
                 case 'x':
                 case 'X':
                     len = mini_itoa(va_arg(va, unsigned int), 16, (ch=='X'), 1, bf, zero_pad);
                     bf[len] = '\0';
-                    puts(bf);
+                    _puts_no_newline(bf);
                     break;
 
                 case 'c' :
-                    putc((char)(va_arg(va, int)));
+                    putchar((char)(va_arg(va, int)));
                     break;
 
                 case 's' :
                     ptr = va_arg(va, char*);
-                    puts(ptr);
+                    _puts_no_newline(ptr);
                     break;
 
                 default:
-                    putc(ch);
+                    putchar(ch);
                     break;
             }
         }

@@ -2,22 +2,16 @@
 #include "imsai.h"
 #include "floppy.h"
 #include "shell.h"
-#include "stdarg.h"
+#include "stdlib.h"
+#include "stdio.h"
 
 static uint8_t DRIVE = 0;
 
-static char buffer[129];
-
 void main() {
+  printf("System started: Total RAM: 0x%04x or %u kBytes\n", _total_mem_size, (_total_mem_size/1024) + 1);
+  printf("Free memory stars at 0x%04x, %u bytes free\n", FREE_MEM_START, _total_mem_size-FREE_MEM_START);
 
-  volatile unsigned char num = 32;
-  volatile unsigned char num2 = 81;
-
-  printf("LMAO reee: %04d\n", (unsigned char)(num * num2));
-
-  HALT();
-
-  // run_shell("IMSAI >", buffer);
+  run_shell("IMSAI >");
 
   for(;;){}
 }

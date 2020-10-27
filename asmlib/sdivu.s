@@ -18,21 +18,6 @@
 
 .globl __sdivu
 
-__sdivu_old:
-    push de
-    ld de, 0xFFFF
-_sub:
-    inc de
-    sbc hl, bc
-    jp nc _sub
-
-    ld h, d
-    ld l, e
-
-    pop de
-    ret
-
-
 __sdivu:
     push af
     push bc
@@ -79,7 +64,8 @@ my_udiv:
     jp c, .drop
     ex (sp), hl
 .drop:
-    .byte 0x33, 0x33
+    inc sp
+    inc sp
     djnz .dvloop
 
     ex de, hl

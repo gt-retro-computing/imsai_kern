@@ -19,8 +19,7 @@ FDC_ERR fdc_home();
 FDC_ERR fdc_seek(uint8_t track);
 
 // first sector = 1
-FDC_ERR fdc_read(uint8_t sector, uint8_t *buf, uint8_t size);
+FDC_ERR fdc_read(uint8_t sector, uint8_t *buf, size_t size);
+FDC_ERR fdc_write(uint8_t sector, uint8_t *buf, size_t size);
 
-FDC_ERR fdc_write(uint8_t sector, uint8_t *buf, uint8_t size);
-
-FDC_ERR fdc_write_track(uint8_t *buffer);
+FDC_ERR fdc_write_track(uint8_t *buffer, size_t size);
